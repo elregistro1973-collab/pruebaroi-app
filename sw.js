@@ -1,4 +1,4 @@
-const CACHE = 'pruebaroi-v1';
+const CACHE = 'airclos-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -7,7 +7,6 @@ const ASSETS = [
   './icon-512.png'
 ];
 
-// Install: cache all assets
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(CACHE).then(function(cache) {
@@ -17,7 +16,6 @@ self.addEventListener('install', function(e) {
   self.skipWaiting();
 });
 
-// Activate: clean old caches
 self.addEventListener('activate', function(e) {
   e.waitUntil(
     caches.keys().then(function(keys) {
@@ -30,13 +28,11 @@ self.addEventListener('activate', function(e) {
   self.clients.claim();
 });
 
-// Fetch: serve from cache, fallback to network
 self.addEventListener('fetch', function(e) {
   e.respondWith(
     caches.match(e.request).then(function(cached) {
       if (cached) return cached;
       return fetch(e.request).then(function(response) {
-        // Cache new resources
         if (response && response.status === 200) {
           var clone = response.clone();
           caches.open(CACHE).then(function(cache) {
@@ -45,7 +41,6 @@ self.addEventListener('fetch', function(e) {
         }
         return response;
       }).catch(function() {
-        // If offline and not cached, return index.html
         return caches.match('./index.html');
       });
     })
