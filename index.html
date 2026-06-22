@@ -153,11 +153,12 @@ button{font-family:inherit;cursor:pointer}
 .form-grid,.form-grid.compact,.kpi-grid,.v27-metrics{grid-template-columns:1fr}
 }
 @media print{
-@page{size:A4;margin:0}
-body{background:#fff !important;color:#101820 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{size:210mm 297mm;margin:0}
+html{width:210mm!important}
+body{width:210mm!important;background:#fff !important;color:#101820 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .app-shell{display:none !important}
 .report{display:block !important}
-.report-page{width:210mm;height:297mm;max-height:297mm;break-after:page;page-break-after:always;position:relative;overflow:hidden;background:#111 !important;color:#fff !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+.report-page{width:210mm!important;height:297mm!important;max-height:297mm;break-after:page;page-break-after:always;position:relative;overflow:hidden;background:#111 !important;color:#fff !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
 .report-page:last-child{break-after:auto;page-break-after:auto}
 .cover-img,.image-page-left>img:first-child,.conclusion-page>.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .premium-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.55) 48%,rgba(0,0,0,.15))}
@@ -347,8 +348,8 @@ body{background:#fff !important;color:#101820 !important;-webkit-print-color-adj
           <h1>Calculadora de recuperación de negocio por climatología</h1>
           <p class="hero-text">Calcula cuánto negocio puede estar perdiendo una terraza por lluvia, viento, calor, frío, nieve u otros factores climáticos, y cuánto podría recuperar un sistema Airclos.</p>
           <div class="hero-badges">
-            <button type="button" id="printBtnHero">PDF comercial</button>
-            <button type="button" id="resetBtnHero">Reiniciar</button>
+            <button type="button" id="printBtnHero">📄 PDF comercial</button>
+            <button type="button" id="resetBtnHero">🔄 Reiniciar</button>
           </div>
         </div>
         <div class="summary-card">
@@ -377,18 +378,35 @@ body{background:#fff !important;color:#101820 !important;-webkit-print-color-adj
           <label class="choice"><input type="radio" name="hasTerrace" value="yes" checked> Sí, ya existe terraza</label>
           <label class="choice"><input type="radio" name="hasTerrace" value="no"> No, sería una nueva terraza</label>
         </div>
+        <div style="margin-top:20px">
+          <div class="section-head" style="margin-bottom:12px">
+            <div><h2 id="venueTypeTitle" style="font-size:16px;margin:0 0 4px">¿Qué tipo de explotación es su terraza?</h2></div>
+          </div>
+          <div class="choice-row">
+            <label class="choice"><input type="radio" name="venueType" id="venueRestaurant" value="restaurant" checked> <span id="venueRestaurantLabel">Restauración (mesas, turnos, ticket medio)</span></label>
+            <label class="choice"><input type="radio" name="venueType" id="venuePub" value="pub"> <span id="venuePubLabel">Pub / Social / Beergarden / Copas</span></label>
+          </div>
+        </div>
       </section>
 
       <section class="panel" id="businessPanel">
-        <div class="section-head"><span>02</span><div><h2 id="businessTitle">Datos de la terraza actual</h2><p id="businessDesc">Introduce la capacidad y explotación normal de la terraza.</p></div></div>
-        <div class="form-grid">
+        <div class="section-head"><span>02</span><div><h2 id="businessTitle">📊 Datos de la terraza actual</h2><p id="businessDesc">Introduce la capacidad y explotación normal de la terraza.</p></div></div>
+        <!-- RESTAURANT MODE -->
+        <div class="form-grid" id="restaurantFields">
           <div class="field"><label id="tablesLabel">Número de mesas</label><input id="tables" type="number" min="0" step="1" value="20" /></div>
-          <div class="field"><label>Clientes por mesa</label><input id="customers" type="number" min="0" step="1" value="4" /></div>
-          <div class="field"><label>Turnos diarios</label><input id="shifts" type="number" min="0" step="1" value="2" /></div>
-          <div class="field"><label>Ticket medio bruto</label><input id="ticket" type="number" min="0" step="1" value="45" /><small>Importe medio pagado por cliente.</small></div>
-          <div class="field"><label>Beneficio neto sobre ticket (%)</label><input id="netMargin" type="number" min="0" max="100" step="1" value="18" /><small>Margen neto estimado sobre la facturación.</small></div>
-          <div class="field"><label>Días abiertos al mes</label><input id="daysMonth" type="number" min="0" max="31" step="1" value="26" /></div>
-          <div class="field"><label>Meses abiertos al año</label><input id="monthsYear" type="number" min="0" max="12" step="1" value="8" /></div>
+          <div class="field"><label id="customersLabel">Clientes por mesa</label><input id="customers" type="number" min="0" step="1" value="4" /></div>
+          <div class="field"><label id="shiftsLabel">Turnos diarios</label><input id="shifts" type="number" min="0" step="1" value="2" /></div>
+          <div class="field"><label id="ticketLabel">Ticket medio bruto</label><input id="ticket" type="number" min="0" step="1" value="45" /><small id="ticketHelp">Importe medio pagado por cliente.</small></div>
+          <div class="field"><label id="marginLabel">Beneficio neto sobre ticket (%)</label><input id="netMargin" type="number" min="0" max="100" step="1" value="18" /><small id="marginHelp">Margen neto estimado sobre la facturación.</small></div>
+          <div class="field"><label id="daysMonthLabel">Días abiertos al mes</label><input id="daysMonth" type="number" min="0" max="31" step="1" value="26" /></div>
+          <div class="field"><label id="monthsYearLabel">Meses abiertos al año</label><input id="monthsYear" type="number" min="0" max="12" step="1" value="8" /></div>
+        </div>
+        <!-- PUB MODE -->
+        <div class="form-grid" id="pubFields" style="display:none">
+          <div class="field"><label id="dailyRevenuePubLabel">Facturación bruta media diaria</label><input id="dailyRevenuePub" type="number" min="0" step="1" value="500" /></div>
+          <div class="field"><label id="pubMarginLabel">Beneficio neto medio por día (%)</label><input id="pubMargin" type="number" min="0" max="100" step="1" value="18" /><small id="pubMarginHelp">Margen neto estimado sobre la facturación diaria.</small></div>
+          <div class="field"><label id="pubDaysMonthLabel">Días abiertos al mes</label><input id="pubDaysMonth" type="number" min="0" max="31" step="1" value="26" /></div>
+          <div class="field"><label id="pubMonthsYearLabel">Meses abiertos al año</label><input id="pubMonthsYear" type="number" min="0" max="12" step="1" value="8" /></div>
         </div>
       </section>
 
@@ -438,16 +456,16 @@ body{background:#fff !important;color:#101820 !important;-webkit-print-color-adj
       </section>
 
       <section class="panel result-panel">
-        <div class="section-head"><span>05</span><div><h2 id="resultsTitleEl">Datos de inversión completos</h2><p>Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.</p></div></div>
+        <div class="section-head"><span>05</span><div><h2 id="resultsTitleEl">📈 Datos de inversión completos</h2><p>Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.</p></div></div>
         <div class="kpi-grid">
-          <div class="kpi"><span>Facturación diaria potencial</span><strong id="dailyRevenue">0 €</strong></div>
-          <div class="kpi"><span>Facturación anual potencial</span><strong id="annualRevenuePotential">0 €</strong></div>
-          <div class="kpi"><span>Beneficio neto anual potencial</span><strong id="potentialProfit">0 €</strong></div>
-          <div class="kpi has-terrace-only"><span>Facturación anual perdida por clima</span><strong id="lostRevenue">0 €</strong></div>
-          <div class="kpi has-terrace-only"><span>Beneficio neto anual perdido por clima</span><strong id="lostProfit">0 €</strong></div>
-          <div class="kpi"><span id="recoverableLabel">Beneficio neto recuperable con Airclos</span><strong id="recoverableProfit">0 €</strong></div>
+          <div class="kpi"><span>💶 Facturación diaria potencial</span><strong id="dailyRevenue">0 €</strong></div>
+          <div class="kpi"><span>📅 Facturación anual potencial</span><strong id="annualRevenuePotential">0 €</strong></div>
+          <div class="kpi"><span>💹 Beneficio neto anual potencial</span><strong id="potentialProfit">0 €</strong></div>
+          <div class="kpi has-terrace-only"><span>🌧️ Facturación anual perdida por clima</span><strong id="lostRevenue">0 €</strong></div>
+          <div class="kpi has-terrace-only"><span>⛈️ Beneficio neto anual perdido por clima</span><strong id="lostProfit">0 €</strong></div>
+          <div class="kpi"><span id="recoverableLabel">✨ Beneficio neto anual recuperable con Airclos</span><strong id="recoverableProfit">0 €</strong></div>
           <div class="kpi kpi-tooltip-wrap">
-            <span id="roiLabel">ROI anual estimado</span>
+            <span id="roiLabel">📊 ROI anual estimado</span>
             <div class="kpi-tooltip-icon">?</div>
             <div class="kpi-tooltip-box" id="roiTooltip" style="display:none">
               <strong>¿Qué es el ROI?</strong>
@@ -456,7 +474,7 @@ body{background:#fff !important;color:#101820 !important;-webkit-print-color-adj
             <strong id="roi">—</strong>
           </div>
           <div class="kpi kpi-tooltip-wrap">
-            <span id="paybackLabel">Años para recuperar inversión</span>
+            <span id="paybackLabel">⏳ Años para recuperar inversión</span>
             <div class="kpi-tooltip-icon" id="paybackIcon">?</div>
             <div class="kpi-tooltip-box" id="paybackTooltip" style="display:none">
               <strong id="paybackTooltipTitle">¿Qué es el Payback?</strong>
@@ -475,7 +493,7 @@ body{background:#fff !important;color:#101820 !important;-webkit-print-color-adj
             <h3 id="commercialMessageTitle">Mensaje comercial</h3>
             <p id="commercialMessage">—</p>
             <div class="story-kpi">
-              <span id="storyKpiLabel">Facturación diaria potencial</span>
+              <span id="storyKpiLabel">💶 Facturación diaria potencial</span>
               <strong id="storyKpiValue">—</strong>
             </div>
           </div>
@@ -483,8 +501,8 @@ body{background:#fff !important;color:#101820 !important;-webkit-print-color-adj
       </section>
 
       <section class="actions">
-        <button id="printBtn" class="primary">Generar PDF comercial</button>
-        <button id="resetBtn" class="secondary">Reiniciar</button>
+        <button id="printBtn" class="primary">📄 Generar PDF comercial</button>
+        <button id="resetBtn" class="secondary">🔄 Reiniciar</button>
       </section>
     </main>
   </div>
@@ -583,7 +601,7 @@ const i18n={
     offline:'Offline',
     pdf:'PDF comercial',
     heroKpiRecoverable:'Beneficio neto recuperable',
-    heroKpiPotential:'Beneficio neto anual potencial',
+    heroKpiPotential:'💹 Beneficio neto anual potencial',
     commercialTitle:'Datos comerciales',
     commercialDesc:'Datos que aparecerán en el informe comercial.',
     client:'Cliente / restaurante',
@@ -592,8 +610,8 @@ const i18n={
     preparedBy:'Preparado por',
     hasTerraceTitle:'¿Dispone actualmente de terraza?',
     hasTerraceDesc:'La lógica cambia según exista ya una terraza o se esté planteando crear una nueva.',
-    terraceYes:'Sí, ya existe terraza',
-    terraceNo:'No, sería una nueva terraza',
+    terraceYes:'✅ Sí, ya existe terraza',
+    terraceNo:'🆕 No, sería una nueva terraza',
     currentTerrace:'Datos de la terraza actual',
     newTerrace:'Datos de la nueva terraza prevista',
     currentTerraceDesc:'Introduce la capacidad y explotación normal de la terraza actual.',
@@ -608,7 +626,7 @@ const i18n={
     marginHelp:'Margen neto estimado sobre la facturación.',
     daysMonth:'Días abiertos al mes',
     monthsYear:'Meses abiertos al año',
-    weatherTitle:'Impacto climático',
+    weatherTitle:'🌦️ Impacto climático',
     openDaysYear:'Días abiertos al año sin acción climática',
     realDaysYear:'Días reales abiertos al año',
     weatherDesc:'Días al año en los que la terraza no puede utilizarse normalmente ',
@@ -618,10 +636,16 @@ const i18n={
     lostDaysTooltipText:'Días de inclemencias climáticas como lluvia, viento, nieve, sol extremo, etc. que impiden usar la terraza con normalidad.',
     recovery:'Recuperación estimada con Airclos (%)',
     recoveryHelp:'Por defecto 90%, para ser prudentes.',
-    investmentTitle:'Inversión y retorno',
+    investmentTitle:'💰 Inversión y retorno',
+    venueTypeTitle:'🍽️ ¿Qué tipo de explotación es su terraza?',
+    venueRestaurant:'🍽️ Restauración (mesas, turnos, ticket medio)',
+    venuePub:'🍺 Pub / Social / Beergarden / Copas',
+    dailyRevenuePub:'Facturación bruta media diaria',
+    pubMargin:'Beneficio neto medio por día (%)',
+    pubMarginHelp:'Margen neto estimado sobre la facturación diaria.',
     financingQuestion:'¿Va a solicitar financiación?',
-    financingNo:'No, pago al contado',
-    financingYes:'Sí, solicitaré financiación',
+    financingNo:'💵 No, pago al contado',
+    financingYes:'💳 Sí, solicitaré financiación',
     loanYears:'Años de devolución del préstamo',
     annualFee:'Cuota anual estimada',
     annualFeeHelp:'Inversión ÷ años de devolución',
@@ -630,27 +654,27 @@ const i18n={
     financingWarning:'La cuota anual supera el beneficio neto recuperable estimado.',
     investmentDesc:'Introduce la inversión prevista para calcular recuperación, ROI y payback.',
     investment:'Inversión estimada',
-    resultsTitle:'Datos de inversión completos',
-    roi:'ROI anual estimado',
+    resultsTitle:'📈 Datos de inversión completos',
+    roi:'📊 ROI anual estimado',
     roiTooltipTitle:'¿Qué es el ROI?',
     roiTooltipText:'El ROI (Retorno sobre la Inversión) mide cuánto beneficio anual genera la inversión en Airclos respecto a su coste. Un ROI del 40% significa que cada año recuperas el 40% de lo invertido en forma de beneficio neto adicional.',
     paybackTooltipTitle:'¿Qué es el Payback?',
     paybackTooltipText:'El Payback es el tiempo necesario para recuperar la inversión inicial gracias al beneficio neto generado. Por ejemplo, un payback de 2,64 años significa que en menos de 3 temporadas la inversión en Airclos queda completamente amortizada.',
     resultsDesc:'Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.',
-    dailyRevenue:'Facturación diaria potencial',
-    annualPotential:'Facturación anual potencial',
-    lostRevenue:'Facturación anual perdida por clima',
-    potentialProfit:'Beneficio neto anual potencial',
-    lostProfit:'Beneficio neto anual perdido por clima',
+    dailyRevenue:'💶 Facturación diaria potencial',
+    annualPotential:'📅 Facturación anual potencial',
+    lostRevenue:'🌧️ Facturación anual perdida por clima',
+    potentialProfit:'💹 Beneficio neto anual potencial',
+    lostProfit:'⛈️ Beneficio neto anual perdido por clima',
     recoverableProfit:'Beneficio neto recuperable con Airclos',
-    potentialNewTerrace:'Beneficio neto anual potencial de la nueva terraza',
-    roi:'ROI anual estimado',
-    payback:'Años para recuperar inversión',
-    visualTitle:'Comparativa visual',
+    potentialNewTerrace:'💹 Beneficio neto anual potencial de la nueva terraza',
+    roi:'📊 ROI anual estimado',
+    payback:'⏳ Años para recuperar inversión',
+    visualTitle:'📉 Comparativa visual',
     visualDesc:'Una lectura rápida del impacto económico.',
     annualImpact:'Impacto anual',
     commercialMessageTitle:'Mensaje comercial',
-    reset:'Reiniciar',
+    reset:'🔄 Reiniciar',
     generatePdf:'Generar PDF comercial',
     years:'años',
     paybackWord:'Payback',
@@ -665,16 +689,16 @@ const i18n={
     reportDate:'Fecha',
     coverQuestion:'¿Cuánto potencial oculto tiene su terraza?',
     coverAnswer:'Descubra la oportunidad',
-    reportPotentialRevenue:'Facturación anual potencial',
+    reportPotentialRevenue:'📅 Facturación anual potencial',
     reportActualRevenue:'Facturación anual actual',
-    reportLostRevenue:'Facturación anual perdida por clima',
+    reportLostRevenue:'🌧️ Facturación anual perdida por clima',
     reportLostProfit:'Beneficio neto perdido',
     reportRecoverableProfit:'Beneficio recuperable con Airclos',
     reportEstimatedPayback:'Payback estimado',
-    reportPotentialProfit:'Beneficio neto anual potencial',
+    reportPotentialProfit:'💹 Beneficio neto anual potencial',
     reportInvestment:'Inversión estimada',
-    reportAnnualRoi:'ROI anual estimado',
-    reportDailyRevenue:'Facturación diaria potencial',
+    reportAnnualRoi:'📊 ROI anual estimado',
+    reportDailyRevenue:'💶 Facturación diaria potencial',
     summaryTerrace:'Según los datos introducidos, las condiciones climáticas afectan aproximadamente {days} días comerciales al año.',
     summaryNoTerrace:'Según los datos introducidos, la terraza prevista podría convertirse en una nueva fuente anual de ingresos con un fuerte retorno comercial.',
     summaryStripTerrace:'facturación anual estimada que actualmente no se captura por condiciones climáticas.',
@@ -725,7 +749,7 @@ const i18n={
     offline:'Offline',
     pdf:'Sales PDF',
     heroKpiRecoverable:'Recoverable net profit',
-    heroKpiPotential:'Potential annual net profit',
+    heroKpiPotential:'💹 Potential annual net profit',
     commercialTitle:'Commercial details',
     commercialDesc:'Details shown in the commercial report.',
     client:'Client / restaurant',
@@ -734,8 +758,8 @@ const i18n={
     preparedBy:'Prepared by',
     hasTerraceTitle:'Does the business currently have a terrace?',
     hasTerraceDesc:'The logic changes depending on whether a terrace already exists or a new terrace is being planned.',
-    terraceYes:'Yes, there is an existing terrace',
-    terraceNo:'No, this would be a new terrace',
+    terraceYes:'✅ Yes, there is an existing terrace',
+    terraceNo:'🆕 No, this would be a new terrace',
     currentTerrace:'Existing terrace data',
     newTerrace:'Planned new terrace data',
     currentTerraceDesc:'Enter the normal capacity and operation of the existing terrace.',
@@ -750,7 +774,7 @@ const i18n={
     marginHelp:'Estimated net margin on revenue.',
     daysMonth:'Opening days per month',
     monthsYear:'Opening months per year',
-    weatherTitle:'Weather impact',
+    weatherTitle:'🌦️ Weather impact',
     openDaysYear:'Open days per year without weather impact',
     realDaysYear:'Real open days per year',
     weatherDesc:'Days per year when the terrace cannot be used normally ',
@@ -760,10 +784,16 @@ const i18n={
     lostDaysTooltipText:'Days of adverse weather conditions such as rain, wind, snow, extreme heat, etc. that prevent normal terrace use.',
     recovery:'Estimated recovery with Airclos (%)',
     recoveryHelp:'Default 90%, for a prudent estimate.',
-    investmentTitle:'Investment and return',
+    investmentTitle:'💰 Investment and return',
+    venueTypeTitle:'🍽️ What type of venue is your terrace?',
+    venueRestaurant:'🍽️ Restaurant (tables, shifts, average ticket)',
+    venuePub:'🍺 Pub / Social / Beergarden / Nightlife',
+    dailyRevenuePub:'Average daily gross revenue',
+    pubMargin:'Average daily net margin (%)',
+    pubMarginHelp:'Estimated net margin on daily revenue.',
     financingQuestion:'Will you seek financing?',
-    financingNo:'No, paying upfront',
-    financingYes:'Yes, I will seek financing',
+    financingNo:'💵 No, paying upfront',
+    financingYes:'💳 Yes, I will seek financing',
     loanYears:'Loan repayment years',
     annualFee:'Estimated annual payment',
     annualFeeHelp:'Investment ÷ repayment years',
@@ -772,27 +802,27 @@ const i18n={
     financingWarning:'The annual payment exceeds the estimated recoverable net profit.',
     investmentDesc:'Enter the estimated investment to calculate recovery, ROI and payback.',
     investment:'Estimated investment',
-    resultsTitle:'Complete investment data',
-    roi:'Estimated annual ROI',
+    resultsTitle:'📈 Complete investment data',
+    roi:'📊 Estimated annual ROI',
     roiTooltipTitle:'What is ROI?',
     roiTooltipText:'ROI (Return on Investment) measures how much annual profit the Airclos investment generates relative to its cost. A 40% ROI means you recover 40% of the investment each year as additional net profit.',
     paybackTooltipTitle:'What is Payback?',
     paybackTooltipText:'Payback is the time needed to recover the initial investment through the net profit generated. For example, a payback of 2.64 years means that in less than 3 seasons the Airclos investment is fully paid back.',
     resultsDesc:'A reading focused on the problem Airclos solves: recovering business days lost due to weather.',
-    dailyRevenue:'Potential daily revenue',
-    annualPotential:'Potential annual revenue',
-    lostRevenue:'Annual revenue lost due to weather',
-    potentialProfit:'Potential annual net profit',
-    lostProfit:'Annual net profit lost due to weather',
-    recoverableProfit:'Recoverable net profit with Airclos',
-    potentialNewTerrace:'Potential annual net profit from the new terrace',
-    roi:'Estimated annual ROI',
-    payback:'Years to recover investment',
-    visualTitle:'Visual comparison',
+    dailyRevenue:'💶 Potential daily revenue',
+    annualPotential:'📅 Potential annual revenue',
+    lostRevenue:'🌧️ Annual revenue lost due to weather',
+    potentialProfit:'💹 Potential annual net profit',
+    lostProfit:'⛈️ Annual net profit lost due to weather',
+    recoverableProfit:'✨ Recoverable net profit with Airclos',
+    potentialNewTerrace:'💹 Potential annual net profit from the new terrace',
+    roi:'📊 Estimated annual ROI',
+    payback:'⏳ Years to recover investment',
+    visualTitle:'📉 Visual comparison',
     visualDesc:'A quick reading of the economic impact.',
     annualImpact:'Annual impact',
     commercialMessageTitle:'Commercial message',
-    reset:'Reset',
+    reset:'🔄 Reset',
     generatePdf:'Generate sales PDF',
     years:'years',
     paybackWord:'Payback',
@@ -807,16 +837,16 @@ const i18n={
     reportDate:'Date',
     coverQuestion:'How much untapped potential is hidden in your terrace?',
     coverAnswer:'Discover the opportunity',
-    reportPotentialRevenue:'Potential annual revenue',
+    reportPotentialRevenue:'📅 Potential annual revenue',
     reportActualRevenue:'Current annual revenue',
-    reportLostRevenue:'Annual revenue lost due to weather',
+    reportLostRevenue:'🌧️ Annual revenue lost due to weather',
     reportLostProfit:'Net profit lost',
     reportRecoverableProfit:'Recoverable profit with Airclos',
     reportEstimatedPayback:'Estimated payback',
-    reportPotentialProfit:'Potential annual net profit',
+    reportPotentialProfit:'💹 Potential annual net profit',
     reportInvestment:'Estimated investment',
-    reportAnnualRoi:'Estimated annual ROI',
-    reportDailyRevenue:'Potential daily revenue',
+    reportAnnualRoi:'📊 Estimated annual ROI',
+    reportDailyRevenue:'💶 Potential daily revenue',
     summaryTerrace:'Based on the data provided, weather conditions currently affect approximately {days} commercial days per year.',
     summaryNoTerrace:'Based on the data provided, the planned terrace could become a new annual revenue stream with a strong commercial return.',
     summaryStripTerrace:'estimated annual revenue not currently captured due to weather conditions.',
@@ -867,7 +897,7 @@ const i18n={
     offline:'Hors ligne',
     pdf:'PDF commercial',
     heroKpiRecoverable:'Bénéfice net récupérable',
-    heroKpiPotential:'Bénéfice net annuel potentiel',
+    heroKpiPotential:'💹 Bénéfice net annuel potentiel',
     commercialTitle:'Données commerciales',
     commercialDesc:'Données affichées dans le rapport commercial.',
     client:'Client / restaurant',
@@ -876,8 +906,8 @@ const i18n={
     preparedBy:'Préparé par',
     hasTerraceTitle:'Disposez-vous actuellement d’une terrasse ?',
     hasTerraceDesc:'La logique change selon qu’il existe déjà une terrasse ou qu’une nouvelle terrasse soit envisagée.',
-    terraceYes:'Oui, il existe déjà une terrasse',
-    terraceNo:'Non, ce serait une nouvelle terrasse',
+    terraceYes:'✅ Oui, il existe déjà une terrasse',
+    terraceNo:'🆕 Non, ce serait une nouvelle terrasse',
     currentTerrace:'Données de la terrasse actuelle',
     newTerrace:'Données de la nouvelle terrasse prévue',
     currentTerraceDesc:'Indiquez la capacité et l’exploitation normale de la terrasse actuelle.',
@@ -892,7 +922,7 @@ const i18n={
     marginHelp:'Marge nette estimée sur le chiffre d’affaires.',
     daysMonth:'Jours ouverts par mois',
     monthsYear:'Mois ouverts par an',
-    weatherTitle:'Impact climatique',
+    weatherTitle:'🌦️ Impact climatique',
     openDaysYear:'Jours ouverts par an sans impact climatique',
     realDaysYear:'Jours réels ouverts par an',
     weatherDesc:'Jours par an où la terrasse ne peut pas être utilisée normalement ',
@@ -902,10 +932,16 @@ const i18n={
     lostDaysTooltipText:'Jours de mauvaises conditions climatiques comme la pluie, le vent, la neige, la chaleur extrême, etc. qui empêchent l’utilisation normale de la terrasse.',
     recovery:'Récupération estimée avec Airclos (%)',
     recoveryHelp:'Par défaut 90%, pour une estimation prudente.',
-    investmentTitle:'Investissement et retour',
+    investmentTitle:'💰 Investissement et retour',
+    venueTypeTitle:'🍽️ Quel type d\'exploitation est votre terrasse ?',
+    venueRestaurant:'🍽️ Restauration (tables, services, ticket moyen)',
+    venuePub:'🍺 Pub / Social / Beergarden / Bar de nuit',
+    dailyRevenuePub:'Chiffre d\'affaires brut moyen journalier',
+    pubMargin:'Bénéfice net moyen par jour (%)',
+    pubMarginHelp:'Marge nette estimée sur le chiffre d\'affaires journalier.',
     financingQuestion:'Allez-vous demander un financement ?',
-    financingNo:'Non, paiement comptant',
-    financingYes:'Oui, je demanderai un financement',
+    financingNo:'💵 Non, paiement comptant',
+    financingYes:'💳 Oui, je demanderai un financement',
     loanYears:'Années de remboursement du prêt',
     annualFee:'Mensualité annuelle estimée',
     annualFeeHelp:'Investissement ÷ années de remboursement',
@@ -914,27 +950,27 @@ const i18n={
     financingWarning:'La mensualité annuelle dépasse le bénéfice net récupérable estimé.',
     investmentDesc:'Indiquez l’investissement prévu pour calculer la récupération, le ROI et le payback.',
     investment:'Investissement estimé',
-    resultsTitle:'Données d\'investissement complètes',
-    roi:'ROI annuel estimé',
+    resultsTitle:'📈 Données d\'investissement complètes',
+    roi:'📊 ROI annuel estimé',
     roiTooltipTitle:'Qu\'est-ce que le ROI ?',
     roiTooltipText:'Le ROI (Retour sur Investissement) mesure le bénéfice annuel que génère l\'investissement Airclos par rapport à son coût. Un ROI de 40% signifie que vous récupérez 40% de l\'investissement chaque année sous forme de bénéfice net supplémentaire.',
     paybackTooltipTitle:'Qu\'est-ce que le Payback ?',
     paybackTooltipText:'Le Payback est le temps nécessaire pour récupérer l\'investissement initial grâce au bénéfice net généré. Par exemple, un payback de 2,64 ans signifie qu\'en moins de 3 saisons l\'investissement Airclos est entièrement amorti.',
     resultsDesc:'Lecture orientée sur le problème résolu par Airclos : récupérer des jours d’activité perdus à cause du climat.',
-    dailyRevenue:'Chiffre d’affaires journalier potentiel',
-    annualPotential:'Chiffre d’affaires annuel potentiel',
-    lostRevenue:'Chiffre d’affaires annuel perdu par climat',
-    potentialProfit:'Bénéfice net annuel potentiel',
-    lostProfit:'Bénéfice net annuel perdu par climat',
+    dailyRevenue:'💶 Chiffre d’affaires journalier potentiel',
+    annualPotential:'📅 Chiffre d’affaires annuel potentiel',
+    lostRevenue:'🌧️ Chiffre d’affaires annuel perdu par climat',
+    potentialProfit:'💹 Bénéfice net annuel potentiel',
+    lostProfit:'⛈️ Bénéfice net annuel perdu par climat',
     recoverableProfit:'Bénéfice net récupérable avec Airclos',
-    potentialNewTerrace:'Bénéfice net annuel potentiel de la nouvelle terrasse',
-    roi:'ROI annuel estimé',
-    payback:'Années pour récupérer l’investissement',
-    visualTitle:'Comparaison visuelle',
+    potentialNewTerrace:'💹 Bénéfice net annuel potentiel de la nouvelle terrasse',
+    roi:'📊 ROI annuel estimé',
+    payback:'⏳ Années pour récupérer l’investissement',
+    visualTitle:'📉 Comparaison visuelle',
     visualDesc:'Une lecture rapide de l’impact économique.',
     annualImpact:'Impact annuel',
     commercialMessageTitle:'Message commercial',
-    reset:'Réinitialiser',
+    reset:'🔄 Réinitialiser',
     generatePdf:'Générer PDF commercial',
     years:'ans',
     paybackWord:'Payback',
@@ -949,16 +985,16 @@ const i18n={
     reportDate:'Date',
     coverQuestion:'Quel potentiel inexploité se cache dans votre terrasse ?',
     coverAnswer:'Découvrez l’opportunité',
-    reportPotentialRevenue:'Chiffre d’affaires annuel potentiel',
+    reportPotentialRevenue:'📅 Chiffre d’affaires annuel potentiel',
     reportActualRevenue:'Chiffre d’affaires annuel réel',
-    reportLostRevenue:'Chiffre d’affaires annuel perdu par climat',
+    reportLostRevenue:'🌧️ Chiffre d’affaires annuel perdu par climat',
     reportLostProfit:'Bénéfice net perdu',
     reportRecoverableProfit:'Bénéfice récupérable avec Airclos',
     reportEstimatedPayback:'Payback estimé',
-    reportPotentialProfit:'Bénéfice net annuel potentiel',
+    reportPotentialProfit:'💹 Bénéfice net annuel potentiel',
     reportInvestment:'Investissement estimé',
-    reportAnnualRoi:'ROI annuel estimé',
-    reportDailyRevenue:'Chiffre d’affaires journalier potentiel',
+    reportAnnualRoi:'📊 ROI annuel estimé',
+    reportDailyRevenue:'💶 Chiffre d’affaires journalier potentiel',
     summaryTerrace:'Selon les données fournies, les conditions climatiques affectent environ {days} jours commerciaux par an.',
     summaryNoTerrace:'Selon les données fournies, la terrasse prévue pourrait devenir une nouvelle source de chiffre d’affaires annuel avec un fort retour commercial.',
     summaryStripTerrace:'chiffre d’affaires annuel estimé actuellement non capté à cause des conditions climatiques.',
@@ -1042,6 +1078,14 @@ function init(){
   $('printBtnHero').addEventListener('click',printReport);
   $('resetBtn').addEventListener('click',()=>{
     ['client','project','dealer','preparedBy'].forEach(id=>{const el=$(id);if(el)el.value='';});
+    // Reset venue type to restaurant
+    var vr=document.getElementById('venueRestaurant'); if(vr) vr.checked=true;
+    var vp=document.getElementById('venuePub'); if(vp) vp.checked=false;
+    // Reset pub fields
+    var dp=document.getElementById('dailyRevenuePub'); if(dp) dp.value='0';
+    var pm=document.getElementById('pubMargin'); if(pm) pm.value='0';
+    var pdm=document.getElementById('pubDaysMonth'); if(pdm) pdm.value='0';
+    var pmy=document.getElementById('pubMonthsYear'); if(pmy) pmy.value='0';
     const defs={tables:'0',customers:'0',shifts:'0',ticket:'0',netMargin:'0',daysMonth:'0',monthsYear:'0',lostDays:'0',recoveryRate:'0',investment:'0'};
     Object.entries(defs).forEach(([id,val])=>{const el=$(id);if(el)el.value=val;});
     ['dailyRevenue','annualRevenuePotential','lostRevenue','potentialProfit','lostProfit','recoverableProfit'].forEach(id=>{const el=$(id);if(el)el.textContent='0';});
@@ -1058,12 +1102,16 @@ function num(n,d=2){const c=currentCountry();return new Intl.NumberFormat(c.loca
 function val(id){return Math.round(Number($(id)?.value||0))}
 function hasTerrace(){return document.querySelector('input[name="hasTerrace"]:checked')?.value==='yes'}
 function saveState(){const s={};ids.forEach(id=>{if($(id))s[id]=$(id).value});s.hasTerrace=hasTerrace()?'yes':'no';localStorage.setItem('airclos_v22_state',JSON.stringify(s));country=$('countrySelect').value;localStorage.setItem('airclos_v22_country',country); if($('languageSelect')){lang=$('languageSelect').value;localStorage.setItem('airclos_v25_lang',lang);}}
+function isPub(){return document.querySelector('input[name="venueType"]:checked')?.value==='pub';}
 function calculations(){
+  const isPubMode=isPub();
   const tables=val('tables'), customers=val('customers'), shifts=val('shifts'), ticket=val('ticket');
-  const margin=val('netMargin')/100, daysMonth=val('daysMonth'), monthsYear=val('monthsYear');
+  const margin=isPubMode?val('pubMargin')/100:val('netMargin')/100;
+  const daysMonth=isPubMode?val('pubDaysMonth'):val('daysMonth');
+  const monthsYear=isPubMode?val('pubMonthsYear'):val('monthsYear');
   const lostDays=hasTerrace()?val('lostDays'):0, recovery=hasTerrace()?val('recoveryRate')/100:1, investment=val('investment');
   const annualOpenDays=daysMonth*monthsYear;
-  const dailyRevenue=tables*customers*shifts*ticket;
+  const dailyRevenue=isPubMode?val('dailyRevenuePub'):tables*customers*shifts*ticket;
   const dailyProfit=dailyRevenue*margin;
   const potentialRevenue=dailyRevenue*annualOpenDays;
   const potentialProfit=potentialRevenue*margin;
@@ -1079,6 +1127,14 @@ function calculations(){
   return {tables,customers,shifts,ticket,margin,daysMonth,monthsYear,lostDays,recovery,investment,annualOpenDays,dailyRevenue,dailyProfit,potentialRevenue,potentialProfit,lostRevenue,lostProfit,actualRevenue,actualProfit,recoverableRevenue,recoverableProfit,payback,roi};
 }
 function saveAndCalc(){
+  // Show/hide section 02 fields based on venue type
+  (function(){
+    var pub = isPub();
+    var rf = document.getElementById('restaurantFields');
+    var pf = document.getElementById('pubFields');
+    if(rf) rf.style.display = pub ? 'none' : 'grid';
+    if(pf) pf.style.display = pub ? 'grid' : 'none';
+  })();
   // Financing: show/hide fields + calculate annual fee
   (function(){
     var hasF = document.querySelector('input[name="hasFinancing"]:checked')?.value === 'yes';
@@ -1095,8 +1151,9 @@ function saveAndCalc(){
   })();
   // Autofill section 03 derived fields
   (function(){
-    var dm = Math.round(Number(document.getElementById('daysMonth')?.value||0));
-    var my = Math.round(Number(document.getElementById('monthsYear')?.value||0));
+    var pub = isPub();
+    var dm = Math.round(Number(document.getElementById(pub?'pubDaysMonth':'daysMonth')?.value||0));
+    var my = Math.round(Number(document.getElementById(pub?'pubMonthsYear':'monthsYear')?.value||0));
     var ld = Math.round(Number(document.getElementById('lostDays')?.value||0));
     var openDays = dm * my;
     var realDays = Math.max(0, openDays - ld);
@@ -1212,6 +1269,14 @@ function applyLanguage(){
   if($('lostDaysTooltipText')) $('lostDaysTooltipText').textContent=tr('lostDaysTooltipText');
   if($('storyKpiLabel')) $('storyKpiLabel').textContent=tr('recoverableProfit');
   if($('resetBtnHero')) $('resetBtnHero').textContent=tr('reset');
+  if($('venueTypeTitle')) $('venueTypeTitle').textContent=tr('venueTypeTitle');
+  if($('venueRestaurantLabel')) $('venueRestaurantLabel').textContent=tr('venueRestaurant');
+  if($('venuePubLabel')) $('venuePubLabel').textContent=tr('venuePub');
+  if($('dailyRevenuePubLabel')) $('dailyRevenuePubLabel').textContent=tr('dailyRevenuePub');
+  if($('pubMarginLabel')) $('pubMarginLabel').textContent=tr('pubMargin');
+  if($('pubMarginHelp')) $('pubMarginHelp').textContent=tr('pubMarginHelp');
+  if($('pubDaysMonthLabel')) $('pubDaysMonthLabel').textContent=tr('daysMonth');
+  if($('pubMonthsYearLabel')) $('pubMonthsYearLabel').textContent=tr('monthsYear');
   if($('financingNoLabel')) $('financingNoLabel').textContent=tr('financingNo');
   if($('financingYesLabel')) $('financingYesLabel').textContent=tr('financingYes');
   if($('loanYearsLabel')) $('loanYearsLabel').textContent=tr('loanYears');
@@ -1290,7 +1355,7 @@ function updateReport(c,terrace){
   ].map(([a,b],i)=>`<div><div class="kpi-ico">${p4ico[i]}</div><span>${a}</span><strong>${b}</strong></div>`).join(''):
   [
     [tr('potentialRevenue'),money(c.potentialRevenue)],
-    ['Potential annual net profit',money(c.potentialProfit)],
+    ['💹 Potential annual net profit',money(c.potentialProfit)],
     [tr('newUsableTerrace'),`${num(c.annualOpenDays,0)} ${tr('daysPerYear')}`]
   ].map(([a,b],i)=>`<div><div class="kpi-ico">${p4ico[i]}</div><span>${a}</span><strong>${b}</strong></div>`).join('');
 
@@ -1395,23 +1460,23 @@ const forcedTranslationsV251 = {
     marginHelp: 'Margen neto estimado sobre la facturación.',
     daysMonth: 'Días abiertos al mes',
     monthsYear: 'Meses abiertos al año',
-    weatherTitle: 'Impacto climático',
+    weatherTitle: '🌦️ Impacto climático',
     weatherDesc: 'Días al año en los que la terraza no puede utilizarse normalmente <strong>(por lluvia, viento, sol/calor, frío, nieve u otros factores climáticos).</strong>',
     lostDays: 'Días de uso perdidos al año',
     recovery: 'Recuperación estimada con Airclos (%)',
     recoveryHelp: 'Por defecto 90%, para ser prudentes.',
-    investmentTitle: 'Inversión y retorno',
+    investmentTitle: '💰 Inversión y retorno',
     investmentDesc: 'Introduce la inversión prevista para calcular recuperación, ROI y payback.',
     investment: 'Inversión estimada',
-    resultsTitle: 'Datos de inversión completos',
+    resultsTitle: '📈 Datos de inversión completos',
     resultsDesc: 'Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.',
-    kpis: ['Facturación diaria potencial','Facturación anual potencial','Beneficio neto anual potencial','Facturación anual perdida por clima','Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','ROI anual estimado','Años para recuperar inversión'],
-    visualTitle: 'Comparativa visual',
+    kpis: ['💶 Facturación diaria potencial','📅 Facturación anual potencial','💹 Beneficio neto anual potencial','🌧️ Facturación anual perdida por clima','⛈️ Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','📊 ROI anual estimado','⏳ Años para recuperar inversión'],
+    visualTitle: '📉 Comparativa visual',
     visualDesc: 'Una lectura rápida del impacto económico.',
     impact: 'Impacto anual',
     message: 'Mensaje comercial',
     generate: 'Generar PDF comercial',
-    reset: 'Reiniciar',
+    reset: '🔄 Reiniciar',
     years: 'años',
     payback: 'Payback'
   },
@@ -1443,7 +1508,7 @@ const forcedTranslationsV251 = {
     marginHelp: 'Estimated net margin on revenue.',
     daysMonth: 'Opening days per month',
     monthsYear: 'Opening months per year',
-    weatherTitle: 'Weather impact',
+    weatherTitle: '🌦️ Weather impact',
     openDaysYear:'Open days per year without weather impact',
     realDaysYear:'Real open days per year',
     weatherDesc: 'Days per year when the terrace cannot be used normally <strong>(rain, wind, sun/heat, cold, snow or other weather factors).</strong>',
@@ -1452,10 +1517,16 @@ const forcedTranslationsV251 = {
     lostDaysTooltipText:'Days of adverse weather conditions such as rain, wind, snow, extreme heat, etc. that prevent normal terrace use.',
     recovery: 'Estimated recovery with Airclos (%)',
     recoveryHelp: 'Default 90%, for a prudent estimate.',
-    investmentTitle: 'Investment and return',
+    investmentTitle: '💰 Investment and return',
+    venueTypeTitle:'🍽️ What type of venue is your terrace?',
+    venueRestaurant:'🍽️ Restaurant (tables, shifts, average ticket)',
+    venuePub:'🍺 Pub / Social / Beergarden / Nightlife',
+    dailyRevenuePub:'Average daily gross revenue',
+    pubMargin:'Average daily net margin (%)',
+    pubMarginHelp:'Estimated net margin on daily revenue.',
     financingQuestion:'Will you seek financing?',
-    financingNo:'No, paying upfront',
-    financingYes:'Yes, I will seek financing',
+    financingNo:'💵 No, paying upfront',
+    financingYes:'💳 Yes, I will seek financing',
     loanYears:'Loan repayment years',
     annualFee:'Estimated annual payment',
     annualFeeHelp:'Investment ÷ repayment years',
@@ -1464,20 +1535,20 @@ const forcedTranslationsV251 = {
     financingWarning:'The annual payment exceeds the estimated recoverable net profit.',
     investmentDesc: 'Enter the estimated investment to calculate recovery, ROI and payback.',
     investment: 'Estimated investment',
-    resultsTitle: 'Complete investment data',
-    roi:'Estimated annual ROI',
+    resultsTitle: '📈 Complete investment data',
+    roi:'📊 Estimated annual ROI',
     roiTooltipTitle:'What is ROI?',
     roiTooltipText:'ROI (Return on Investment) measures how much annual profit the Airclos investment generates relative to its cost. A 40% ROI means you recover 40% of the investment each year as additional net profit.',
     paybackTooltipTitle:'What is Payback?',
     paybackTooltipText:'Payback is the time needed to recover the initial investment through the net profit generated. For example, a payback of 2.64 years means that in less than 3 seasons the Airclos investment is fully paid back.',
     resultsDesc: 'A reading focused on the problem Airclos solves: recovering business days lost due to weather.',
-    kpis: ['Potential daily revenue','Potential annual revenue','Potential annual net profit','Annual revenue lost due to weather','Annual net profit lost due to weather','Recoverable net profit with Airclos','Estimated annual ROI','Years to recover investment'],
-    visualTitle: 'Visual comparison',
+    kpis: ['💶 Potential daily revenue','📅 Potential annual revenue','💹 Potential annual net profit','🌧️ Annual revenue lost due to weather','⛈️ Annual net profit lost due to weather','✨ Recoverable net profit with Airclos','📊 Estimated annual ROI','⏳ Years to recover investment'],
+    visualTitle: '📉 Visual comparison',
     visualDesc: 'A quick reading of the economic impact.',
     impact: 'Annual impact',
     message: 'Commercial message',
     generate: 'Generate sales PDF',
-    reset: 'Reset',
+    reset: '🔄 Reset',
     years: 'years',
     payback: 'Payback'
   },
@@ -1509,7 +1580,7 @@ const forcedTranslationsV251 = {
     marginHelp: 'Marge nette estimée sur le chiffre d’affaires.',
     daysMonth: 'Jours ouverts par mois',
     monthsYear: 'Mois ouverts par an',
-    weatherTitle: 'Impact climatique',
+    weatherTitle: '🌦️ Impact climatique',
     openDaysYear:'Jours ouverts par an sans impact climatique',
     realDaysYear:'Jours réels ouverts par an',
     weatherDesc: 'Jours par an où la terrasse ne peut pas être utilisée normalement <strong>(pluie, vent, soleil/chaleur, froid, neige ou autres facteurs climatiques).</strong>',
@@ -1518,10 +1589,16 @@ const forcedTranslationsV251 = {
     lostDaysTooltipText:'Jours de mauvaises conditions climatiques comme la pluie, le vent, la neige, la chaleur extrême, etc. qui empêchent l’utilisation normale de la terrasse.',
     recovery: 'Récupération estimée avec Airclos (%)',
     recoveryHelp: 'Par défaut 90%, pour une estimation prudente.',
-    investmentTitle: 'Investissement et retour',
+    investmentTitle: '💰 Investissement et retour',
+    venueTypeTitle:'🍽️ Quel type d\'exploitation est votre terrasse ?',
+    venueRestaurant:'🍽️ Restauration (tables, services, ticket moyen)',
+    venuePub:'🍺 Pub / Social / Beergarden / Bar de nuit',
+    dailyRevenuePub:'Chiffre d\'affaires brut moyen journalier',
+    pubMargin:'Bénéfice net moyen par jour (%)',
+    pubMarginHelp:'Marge nette estimée sur le chiffre d\'affaires journalier.',
     financingQuestion:'Allez-vous demander un financement ?',
-    financingNo:'Non, paiement comptant',
-    financingYes:'Oui, je demanderai un financement',
+    financingNo:'💵 Non, paiement comptant',
+    financingYes:'💳 Oui, je demanderai un financement',
     loanYears:'Années de remboursement du prêt',
     annualFee:'Mensualité annuelle estimée',
     annualFeeHelp:'Investissement ÷ années de remboursement',
@@ -1530,20 +1607,20 @@ const forcedTranslationsV251 = {
     financingWarning:'La mensualité annuelle dépasse le bénéfice net récupérable estimé.',
     investmentDesc: 'Indiquez l’investissement prévu pour calculer la récupération, le ROI et le payback.',
     investment: 'Investissement estimé',
-    resultsTitle: 'Données d\'investissement complètes',
-    roi:'ROI annuel estimé',
+    resultsTitle: '📈 Données d\'investissement complètes',
+    roi:'📊 ROI annuel estimé',
     roiTooltipTitle:'Qu\'est-ce que le ROI ?',
     roiTooltipText:'Le ROI (Retour sur Investissement) mesure le bénéfice annuel que génère l\'investissement Airclos par rapport à son coût. Un ROI de 40% signifie que vous récupérez 40% de l\'investissement chaque année sous forme de bénéfice net supplémentaire.',
     paybackTooltipTitle:'Qu\'est-ce que le Payback ?',
     paybackTooltipText:'Le Payback est le temps nécessaire pour récupérer l\'investissement initial grâce au bénéfice net généré. Par exemple, un payback de 2,64 ans signifie qu\'en moins de 3 saisons l\'investissement Airclos est entièrement amorti.',
     resultsDesc: 'Lecture orientée sur le problème résolu par Airclos : récupérer des jours d’activité perdus à cause du climat.',
-    kpis: ['Chiffre d’affaires journalier potentiel','Chiffre d’affaires annuel potentiel','Bénéfice net annuel potentiel','Chiffre d’affaires annuel perdu par climat','Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','ROI annuel estimé','Années pour récupérer l’investissement'],
-    visualTitle: 'Comparaison visuelle',
+    kpis: ['💶 Chiffre d’affaires journalier potentiel','📅 Chiffre d’affaires annuel potentiel','💹 Bénéfice net annuel potentiel','🌧️ Chiffre d’affaires annuel perdu par climat','⛈️ Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','📊 ROI annuel estimé','⏳ Années pour récupérer l’investissement'],
+    visualTitle: '📉 Comparaison visuelle',
     visualDesc: 'Une lecture rapide de l’impact économique.',
     impact: 'Impact annuel',
     message: 'Message commercial',
     generate: 'Générer PDF commercial',
-    reset: 'Réinitialiser',
+    reset: '🔄 Réinitialiser',
     years: 'ans',
     payback: 'Payback'
   }
@@ -1790,7 +1867,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       marginHelp:'Margen neto estimado sobre la facturación.',
       daysMonth:'Días abiertos al mes',
       monthsYear:'Meses abiertos al año',
-      weatherTitle:'Impacto climático',
+      weatherTitle:'🌦️ Impacto climático',
     openDaysYear:'Días abiertos al año sin acción climática',
     realDaysYear:'Días reales abiertos al año',
       weatherDesc:'Días al año en los que la terraza no puede utilizarse normalmente <strong>(por lluvia, viento, sol/calor, frío, nieve u otros factores climáticos).</strong>',
@@ -1799,10 +1876,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     lostDaysTooltipText:'Días de inclemencias climáticas como lluvia, viento, nieve, sol extremo, etc. que impiden usar la terraza con normalidad.',
       recovery:'Recuperación estimada con Airclos (%)',
       recoveryHelp:'Por defecto 90%, para ser prudentes.',
-      investmentTitle:'Inversión y retorno',
+      investmentTitle:'💰 Inversión y retorno',
+    venueTypeTitle:'🍽️ ¿Qué tipo de explotación es su terraza?',
+    venueRestaurant:'🍽️ Restauración (mesas, turnos, ticket medio)',
+    venuePub:'🍺 Pub / Social / Beergarden / Copas',
+    dailyRevenuePub:'Facturación bruta media diaria',
+    pubMargin:'Beneficio neto medio por día (%)',
+    pubMarginHelp:'Margen neto estimado sobre la facturación diaria.',
     financingQuestion:'¿Va a solicitar financiación?',
-    financingNo:'No, pago al contado',
-    financingYes:'Sí, solicitaré financiación',
+    financingNo:'💵 No, pago al contado',
+    financingYes:'💳 Sí, solicitaré financiación',
     loanYears:'Años de devolución del préstamo',
     annualFee:'Cuota anual estimada',
     annualFeeHelp:'Inversión ÷ años de devolución',
@@ -1811,22 +1894,22 @@ document.addEventListener('DOMContentLoaded',()=>{
     financingWarning:'La cuota anual supera el beneficio neto recuperable estimado.',
       investmentDesc:'Introduce la inversión prevista para calcular recuperación, ROI y payback.',
       investment:'Inversión estimada',
-      resultsTitle:'Datos de inversión completos',
-    roi:'ROI anual estimado',
+      resultsTitle:'📈 Datos de inversión completos',
+    roi:'📊 ROI anual estimado',
     roiTooltipTitle:'¿Qué es el ROI?',
     roiTooltipText:'El ROI (Retorno sobre la Inversión) mide cuánto beneficio anual genera la inversión en Airclos respecto a su coste. Un ROI del 40% significa que cada año recuperas el 40% de lo invertido en forma de beneficio neto adicional.',
     paybackTooltipTitle:'¿Qué es el Payback?',
     paybackTooltipText:'El Payback es el tiempo necesario para recuperar la inversión inicial gracias al beneficio neto generado. Por ejemplo, un payback de 2,64 años significa que en menos de 3 temporadas la inversión en Airclos queda completamente amortizada.',
       resultsDesc:'Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.',
-      kpis:['Facturación diaria potencial','Facturación anual potencial','Beneficio neto anual potencial','Facturación anual perdida por clima','Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','ROI anual estimado','Años para recuperar inversión'],
-      visualTitle:'Comparativa visual',
+      kpis:['💶 Facturación diaria potencial','📅 Facturación anual potencial','💹 Beneficio neto anual potencial','🌧️ Facturación anual perdida por clima','⛈️ Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','📊 ROI anual estimado','⏳ Años para recuperar inversión'],
+      visualTitle:'📉 Comparativa visual',
       visualDesc:'Una lectura rápida del impacto económico.',
       annualImpact:'Impacto anual',
       commercialMessage:'Mensaje comercial',
       generate:'Generar PDF comercial',
-      reset:'Reiniciar',
+      reset:'🔄 Reiniciar',
       recoverable:'Beneficio neto recuperable',
-      potential:'Beneficio neto anual potencial',
+      potential:'💹 Beneficio neto anual potencial',
       payback:'Payback',
       years:'años'
     },
@@ -1858,7 +1941,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       marginHelp:'Estimated net margin on revenue.',
       daysMonth:'Opening days per month',
       monthsYear:'Opening months per year',
-      weatherTitle:'Weather impact',
+      weatherTitle:'🌦️ Weather impact',
     openDaysYear:'Open days per year without weather impact',
     realDaysYear:'Real open days per year',
       weatherDesc:'Days per year when the terrace cannot be used normally <strong>(rain, wind, sun/heat, cold, snow or other weather factors).</strong>',
@@ -1867,10 +1950,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     lostDaysTooltipText:'Days of adverse weather conditions such as rain, wind, snow, extreme heat, etc. that prevent normal terrace use.',
       recovery:'Estimated recovery with Airclos (%)',
       recoveryHelp:'Default 90%, for a prudent estimate.',
-      investmentTitle:'Investment and return',
+      investmentTitle:'💰 Investment and return',
+    venueTypeTitle:'🍽️ What type of venue is your terrace?',
+    venueRestaurant:'🍽️ Restaurant (tables, shifts, average ticket)',
+    venuePub:'🍺 Pub / Social / Beergarden / Nightlife',
+    dailyRevenuePub:'Average daily gross revenue',
+    pubMargin:'Average daily net margin (%)',
+    pubMarginHelp:'Estimated net margin on daily revenue.',
     financingQuestion:'Will you seek financing?',
-    financingNo:'No, paying upfront',
-    financingYes:'Yes, I will seek financing',
+    financingNo:'💵 No, paying upfront',
+    financingYes:'💳 Yes, I will seek financing',
     loanYears:'Loan repayment years',
     annualFee:'Estimated annual payment',
     annualFeeHelp:'Investment ÷ repayment years',
@@ -1879,22 +1968,22 @@ document.addEventListener('DOMContentLoaded',()=>{
     financingWarning:'The annual payment exceeds the estimated recoverable net profit.',
     investmentDesc:'Enter the estimated investment to calculate recovery, ROI and payback.',
       investment:'Estimated investment',
-      resultsTitle:'Complete investment data',
-    roi:'Estimated annual ROI',
+      resultsTitle:'📈 Complete investment data',
+    roi:'📊 Estimated annual ROI',
     roiTooltipTitle:'What is ROI?',
     roiTooltipText:'ROI (Return on Investment) measures how much annual profit the Airclos investment generates relative to its cost. A 40% ROI means you recover 40% of the investment each year as additional net profit.',
     paybackTooltipTitle:'What is Payback?',
     paybackTooltipText:'Payback is the time needed to recover the initial investment through the net profit generated. For example, a payback of 2.64 years means that in less than 3 seasons the Airclos investment is fully paid back.',
       resultsDesc:'A reading focused on the problem Airclos solves: recovering business days lost due to weather.',
-      kpis:['Potential daily revenue','Potential annual revenue','Potential annual net profit','Annual revenue lost due to weather','Annual net profit lost due to weather','Recoverable net profit with Airclos','Estimated annual ROI','Years to recover investment'],
-      visualTitle:'Visual comparison',
+      kpis:['💶 Potential daily revenue','📅 Potential annual revenue','💹 Potential annual net profit','🌧️ Annual revenue lost due to weather','⛈️ Annual net profit lost due to weather','✨ Recoverable net profit with Airclos','📊 Estimated annual ROI','⏳ Years to recover investment'],
+      visualTitle:'📉 Visual comparison',
       visualDesc:'A quick reading of the economic impact.',
       annualImpact:'Annual impact',
       commercialMessage:'Commercial message',
       generate:'Generate sales PDF',
-      reset:'Reset',
+      reset:'🔄 Reset',
       recoverable:'Recoverable net profit',
-      potential:'Potential annual net profit',
+      potential:'💹 Potential annual net profit',
       payback:'Payback',
       years:'years'
     },
@@ -1926,7 +2015,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       marginHelp:'Marge nette estimée sur le chiffre d’affaires.',
       daysMonth:'Jours ouverts par mois',
       monthsYear:'Mois ouverts par an',
-      weatherTitle:'Impact climatique',
+      weatherTitle:'🌦️ Impact climatique',
     openDaysYear:'Jours ouverts par an sans impact climatique',
     realDaysYear:'Jours réels ouverts par an',
       weatherDesc:'Jours par an où la terrasse ne peut pas être utilisée normalement <strong>(pluie, vent, soleil/chaleur, froid, neige ou autres facteurs climatiques).</strong>',
@@ -1935,10 +2024,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     lostDaysTooltipText:'Jours de mauvaises conditions climatiques comme la pluie, le vent, la neige, la chaleur extrême, etc. qui empêchent l’utilisation normale de la terrasse.',
       recovery:'Récupération estimée avec Airclos (%)',
       recoveryHelp:'Par défaut 90%, pour une estimation prudente.',
-      investmentTitle:'Investissement et retour',
+      investmentTitle:'💰 Investissement et retour',
+    venueTypeTitle:'🍽️ Quel type d\'exploitation est votre terrasse ?',
+    venueRestaurant:'🍽️ Restauration (tables, services, ticket moyen)',
+    venuePub:'🍺 Pub / Social / Beergarden / Bar de nuit',
+    dailyRevenuePub:'Chiffre d\'affaires brut moyen journalier',
+    pubMargin:'Bénéfice net moyen par jour (%)',
+    pubMarginHelp:'Marge nette estimée sur le chiffre d\'affaires journalier.',
     financingQuestion:'Allez-vous demander un financement ?',
-    financingNo:'Non, paiement comptant',
-    financingYes:'Oui, je demanderai un financement',
+    financingNo:'💵 Non, paiement comptant',
+    financingYes:'💳 Oui, je demanderai un financement',
     loanYears:'Années de remboursement du prêt',
     annualFee:'Mensualité annuelle estimée',
     annualFeeHelp:'Investissement ÷ années de remboursement',
@@ -1947,22 +2042,22 @@ document.addEventListener('DOMContentLoaded',()=>{
     financingWarning:'La mensualité annuelle dépasse le bénéfice net récupérable estimé.',
       investmentDesc:'Indiquez l’investissement prévu pour calculer la récupération, le ROI et le payback.',
       investment:'Investissement estimé',
-      resultsTitle:'Données d\'investissement complètes',
-    roi:'ROI annuel estimé',
+      resultsTitle:'📈 Données d\'investissement complètes',
+    roi:'📊 ROI annuel estimé',
     roiTooltipTitle:'Qu\'est-ce que le ROI ?',
     roiTooltipText:'Le ROI (Retour sur Investissement) mesure le bénéfice annuel que génère l\'investissement Airclos par rapport à son coût. Un ROI de 40% signifie que vous récupérez 40% de l\'investissement chaque année sous forme de bénéfice net supplémentaire.',
     paybackTooltipTitle:'Qu\'est-ce que le Payback ?',
     paybackTooltipText:'Le Payback est le temps nécessaire pour récupérer l\'investissement initial grâce au bénéfice net généré. Par exemple, un payback de 2,64 ans signifie qu\'en moins de 3 saisons l\'investissement Airclos est entièrement amorti.',
       resultsDesc:'Lecture orientée sur le problème résolu par Airclos : récupérer des jours d’activité perdus à cause du climat.',
-      kpis:['Chiffre d’affaires journalier potentiel','Chiffre d’affaires annuel potentiel','Bénéfice net annuel potentiel','Chiffre d’affaires annuel perdu par climat','Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','ROI annuel estimé','Années pour récupérer l’investissement'],
-      visualTitle:'Comparaison visuelle',
+      kpis:['💶 Chiffre d’affaires journalier potentiel','📅 Chiffre d’affaires annuel potentiel','💹 Bénéfice net annuel potentiel','🌧️ Chiffre d’affaires annuel perdu par climat','⛈️ Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','📊 ROI annuel estimé','⏳ Années pour récupérer l’investissement'],
+      visualTitle:'📉 Comparaison visuelle',
       visualDesc:'Une lecture rapide de l’impact économique.',
       annualImpact:'Impact annuel',
       commercialMessage:'Message commercial',
       generate:'Générer PDF commercial',
-      reset:'Réinitialiser',
+      reset:'🔄 Réinitialiser',
       recoverable:'Bénéfice net récupérable',
-      potential:'Bénéfice net annuel potentiel',
+      potential:'💹 Bénéfice net annuel potentiel',
       payback:'Payback',
       years:'ans'
     }
