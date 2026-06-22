@@ -1,4 +1,4 @@
-const CACHE = 'airclos-v2';
+const CACHE = 'airclos-v3';
 const ASSETS = [
   './',
   './index.html',
