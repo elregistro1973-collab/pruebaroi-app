@@ -188,7 +188,7 @@ body{width:210mm!important;background:#fff !important;color:#101820 !important;-
 .summary-strip{position:absolute;left:18mm;right:18mm;bottom:22mm;background:#111;color:#fff;border-radius:8mm;padding:7mm 9mm;display:flex;gap:8mm;align-items:center}
 .summary-strip strong{font-size:25pt;color:#2997ff;white-space:nowrap}.summary-strip span{font-size:12pt;line-height:1.35;color:#eee}
 .weather-page .page-eyebrow,.return-page .page-eyebrow{position:absolute;top:43mm;left:18mm;color:#9d7331}.weather-page h2,.return-page h2{margin-top:50mm;color:#111;width:145mm}
-.days-visual{margin-top:16mm;display:grid;grid-template-columns:52mm 1fr;gap:14mm;align-items:start}
+.days-visual{margin-top:10mm;display:block}
 .days-number{background:#111;color:#fff;border-radius:9mm;padding:9mm;text-align:center}.days-number strong{display:block;font-size:44pt;line-height:.9;color:#2997ff}.days-number span{display:block;text-transform:uppercase;font-weight:900;font-size:8.5pt;letter-spacing:.12em;margin-top:4mm;color:#eee}
 .days-bars{background:#fff;border-radius:9mm;padding:8mm;box-shadow:0 12px 28px rgba(0,0,0,.08)}
 .bars-row{display:grid;grid-template-columns:36mm 1fr 18mm;gap:4mm;align-items:center;margin:0 0 7mm}.bars-row:last-child{margin-bottom:0}.bars-row span{text-transform:uppercase;font-size:7.2pt;color:#605b52;font-weight:900;line-height:1.2}.bars-row strong{font-size:15pt;text-align:right}.bars-row div{display:flex;gap:1.2mm;flex-wrap:wrap}.bars-row i{display:block;width:4.2mm;height:6mm;border-radius:1.2mm;background:#ded6c8}.bars-row i.usable{background:#111}.bars-row i.lost{background:#2997ff}
@@ -206,7 +206,7 @@ body{width:210mm!important;background:#fff !important;color:#101820 !important;-
 .recovery-grid .kpi-ico{font-size:16pt;font-weight:900;color:#fff;line-height:1}
 .recovery-grid span{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:7pt;font-weight:900;color:rgba(255,255,255,.7);margin-bottom:1.5mm}
 .recovery-grid strong{display:block;font-size:26pt;font-weight:900;letter-spacing:-.04em;line-height:1;color:#fff}
-.return-hero-grid{display:grid;grid-template-columns:1fr;gap:4mm;margin-top:10mm}.return-card{background:linear-gradient(135deg,#101820,#2997ff) !important;color:#fff;border-radius:8mm;padding:6mm 9mm;min-height:28mm;display:grid;grid-template-columns:1fr auto;align-items:center}.return-card span{text-transform:uppercase;letter-spacing:.1em;color:#2997ff;font-size:8.5pt;font-weight:900}.return-card strong{font-size:30pt;line-height:1;color:#fff;letter-spacing:-.045em !important}
+.return-hero-grid{display:grid;grid-template-columns:1fr;gap:4mm;margin-top:10mm}.return-card{background:linear-gradient(135deg,#101820,#2997ff) !important;color:#fff;border-radius:6mm;padding:5mm 6mm;min-height:24mm;display:flex;flex-direction:row;align-items:center;gap:5mm}.return-card span{text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);font-size:7.5pt;font-weight:700;display:block;margin-bottom:1.5mm}.return-card strong{font-size:26pt;line-height:1;color:#fff;font-weight:900;letter-spacing:-.04em;display:block}
 .return-note{position:absolute;left:18mm;right:18mm;bottom:25mm;background:#fff;border-radius:8mm;padding:8mm 9mm;font-size:12pt;line-height:1.45;color:#333;box-shadow:0 10px 25px rgba(0,0,0,.08)}
 .conclusion-page{background:#111 !important}.conclusion-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.20),rgba(0,0,0,.50),rgba(0,0,0,.78));z-index:1}.conclusion-logo{position:absolute;right:18mm;top:16mm;width:55mm;z-index:3}.conclusion-panel{position:absolute;right:18mm;bottom:22mm;width:105mm;background:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.5) !important;box-shadow:0 18px 44px rgba(0,0,0,.22) !important;border-radius:10mm;padding:9mm;color:#111;z-index:3;backdrop-filter:blur(8px)}.conclusion-panel h2{font-size:26pt;line-height:1.08 !important;margin:0 0 6mm;letter-spacing:-.03em}.conclusion-panel p{font-size:11.2pt;line-height:1.42;color:#222;margin:0 0 4mm}.conclusion-panel strong{color:#111;font-weight:900}.conclusion-kpis{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:7mm}.conclusion-kpis div{background:linear-gradient(135deg,#101820,#2997ff) !important;color:#fff;border-radius:6mm;padding:5mm}.conclusion-kpis small{display:block;color:#2997ff;text-transform:uppercase;font-size:7.2pt;letter-spacing:.1em;font-weight:900}.conclusion-kpis strong{display:block;color:#fff;font-size:18pt;margin-top:2mm}
 .recovery-page .report-logo{width:42mm !important;height:auto !important;z-index:4}
@@ -218,8 +218,8 @@ body{width:210mm!important;background:#fff !important;color:#101820 !important;-
 .weather-pills svg{vertical-align:middle}
 .weather-pills span{font-size:8pt;font-weight:700;color:#2d4a62;text-transform:uppercase;letter-spacing:.07em;margin-right:3mm}
 
-.return-card span{font-size:9pt;letter-spacing:.1em}
-.return-card strong{font-size:24pt;letter-spacing:-.045em}
+
+
 
 }
 
@@ -312,6 +312,39 @@ body{width:210mm!important;background:#fff !important;color:#101820 !important;-
 
 @media(max-width:860px){
   .kpi-tooltip-box{right:-20px;width:220px}
+
+/* ── WEATHER IMPACT VISUALIZATION ── */
+.weather-viz{display:grid;grid-template-columns:140px 1fr;gap:8mm;align-items:center}
+.weather-donut-wrap{display:flex;flex-direction:column;align-items:center;gap:4mm}
+.weather-donut-svg{width:140px;height:140px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.08))}
+.weather-donut-legend{width:100%}
+.wdl-item{display:flex;align-items:center;gap:3mm;font-size:8pt;color:#4a5568;margin-bottom:2mm;font-family:Inter,sans-serif}
+.wdl-dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.wdl-item strong{font-weight:900;color:#111}
+.weather-impact-cards{display:grid;grid-template-columns:1fr;gap:4mm}
+.wi-card{border-radius:5mm;padding:5mm 6mm;position:relative;overflow:hidden}
+.wi-card--blue{background:linear-gradient(135deg,#1a4a7a,#2997ff);color:#fff}
+.wi-card--dark{background:linear-gradient(135deg,#101820,#2d3f52);color:#fff}
+.wi-card-pct{font-size:28pt;font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:1mm}
+.wi-card--blue .wi-card-pct{color:#fff}
+.wi-card--dark .wi-card-pct{color:#7ab8e8}
+.wi-card-label{font-size:7pt;text-transform:uppercase;letter-spacing:.1em;font-weight:700;opacity:.75;margin-bottom:1mm}
+.wi-card-value{font-size:11pt;font-weight:700}
+
+
+/* ── RETURN CARD PREMIUM LAYOUT ── */
+.ret-ico-box{
+  width:14mm;height:14mm;min-width:14mm;
+  background:rgba(255,255,255,.15);
+  border:1.5px solid rgba(255,255,255,.3);
+  border-radius:3.5mm;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18pt;font-weight:900;color:#fff;
+  flex:0 0 auto
+}
+.ret-card-text{flex:1}
+.return-hero-grid{display:grid;grid-template-columns:1fr;gap:4mm;margin-top:8mm}
+
 }
 </style>
   <link rel="apple-touch-icon" href="data:image/png;base64,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">
@@ -465,7 +498,7 @@ body{width:210mm!important;background:#fff !important;color:#101820 !important;-
           <div class="kpi has-terrace-only"><span>⛈️ Beneficio neto anual perdido por clima</span><strong id="lostProfit">0 €</strong></div>
           <div class="kpi"><span id="recoverableLabel">✨ Beneficio neto anual recuperable con Airclos</span><strong id="recoverableProfit">0 €</strong></div>
           <div class="kpi kpi-tooltip-wrap">
-            <span id="roiLabel">📊 ROI anual estimado</span>
+            <span id="roiLabel">ROI anual estimado</span>
             <div class="kpi-tooltip-icon">?</div>
             <div class="kpi-tooltip-box" id="roiTooltip" style="display:none">
               <strong>¿Qué es el ROI?</strong>
@@ -655,7 +688,7 @@ const i18n={
     investmentDesc:'Introduce la inversión prevista para calcular recuperación, ROI y payback.',
     investment:'Inversión estimada',
     resultsTitle:'📈 Datos de inversión completos',
-    roi:'📊 ROI anual estimado',
+    roi:'ROI anual estimado',
     roiTooltipTitle:'¿Qué es el ROI?',
     roiTooltipText:'El ROI (Retorno sobre la Inversión) mide cuánto beneficio anual genera la inversión en Airclos respecto a su coste. Un ROI del 40% significa que cada año recuperas el 40% de lo invertido en forma de beneficio neto adicional.',
     paybackTooltipTitle:'¿Qué es el Payback?',
@@ -668,7 +701,7 @@ const i18n={
     lostProfit:'⛈️ Beneficio neto anual perdido por clima',
     recoverableProfit:'Beneficio neto recuperable con Airclos',
     potentialNewTerrace:'💹 Beneficio neto anual potencial de la nueva terraza',
-    roi:'📊 ROI anual estimado',
+    roi:'ROI anual estimado',
     payback:'⏳ Años para recuperar inversión',
     visualTitle:'📉 Comparativa visual',
     visualDesc:'Una lectura rápida del impacto económico.',
@@ -697,7 +730,7 @@ const i18n={
     reportEstimatedPayback:'Payback estimado',
     reportPotentialProfit:'💹 Beneficio neto anual potencial',
     reportInvestment:'Inversión estimada',
-    reportAnnualRoi:'📊 ROI anual estimado',
+    reportAnnualRoi:'ROI anual estimado',
     reportDailyRevenue:'💶 Facturación diaria potencial',
     summaryTerrace:'Según los datos introducidos, las condiciones climáticas afectan aproximadamente {days} días comerciales al año.',
     summaryNoTerrace:'Según los datos introducidos, la terraza prevista podría convertirse en una nueva fuente anual de ingresos con un fuerte retorno comercial.',
@@ -803,7 +836,7 @@ const i18n={
     investmentDesc:'Enter the estimated investment to calculate recovery, ROI and payback.',
     investment:'Estimated investment',
     resultsTitle:'📈 Complete investment data',
-    roi:'📊 Estimated annual ROI',
+    roi:'Estimated annual ROI',
     roiTooltipTitle:'What is ROI?',
     roiTooltipText:'ROI (Return on Investment) measures how much annual profit the Airclos investment generates relative to its cost. A 40% ROI means you recover 40% of the investment each year as additional net profit.',
     paybackTooltipTitle:'What is Payback?',
@@ -816,7 +849,7 @@ const i18n={
     lostProfit:'⛈️ Annual net profit lost due to weather',
     recoverableProfit:'✨ Recoverable net profit with Airclos',
     potentialNewTerrace:'💹 Potential annual net profit from the new terrace',
-    roi:'📊 Estimated annual ROI',
+    roi:'Estimated annual ROI',
     payback:'⏳ Years to recover investment',
     visualTitle:'📉 Visual comparison',
     visualDesc:'A quick reading of the economic impact.',
@@ -845,7 +878,7 @@ const i18n={
     reportEstimatedPayback:'Estimated payback',
     reportPotentialProfit:'💹 Potential annual net profit',
     reportInvestment:'Estimated investment',
-    reportAnnualRoi:'📊 Estimated annual ROI',
+    reportAnnualRoi:'Estimated annual ROI',
     reportDailyRevenue:'💶 Potential daily revenue',
     summaryTerrace:'Based on the data provided, weather conditions currently affect approximately {days} commercial days per year.',
     summaryNoTerrace:'Based on the data provided, the planned terrace could become a new annual revenue stream with a strong commercial return.',
@@ -951,7 +984,7 @@ const i18n={
     investmentDesc:'Indiquez l’investissement prévu pour calculer la récupération, le ROI et le payback.',
     investment:'Investissement estimé',
     resultsTitle:'📈 Données d\'investissement complètes',
-    roi:'📊 ROI annuel estimé',
+    roi:'ROI annuel estimé',
     roiTooltipTitle:'Qu\'est-ce que le ROI ?',
     roiTooltipText:'Le ROI (Retour sur Investissement) mesure le bénéfice annuel que génère l\'investissement Airclos par rapport à son coût. Un ROI de 40% signifie que vous récupérez 40% de l\'investissement chaque année sous forme de bénéfice net supplémentaire.',
     paybackTooltipTitle:'Qu\'est-ce que le Payback ?',
@@ -964,7 +997,7 @@ const i18n={
     lostProfit:'⛈️ Bénéfice net annuel perdu par climat',
     recoverableProfit:'Bénéfice net récupérable avec Airclos',
     potentialNewTerrace:'💹 Bénéfice net annuel potentiel de la nouvelle terrasse',
-    roi:'📊 ROI annuel estimé',
+    roi:'ROI annuel estimé',
     payback:'⏳ Années pour récupérer l’investissement',
     visualTitle:'📉 Comparaison visuelle',
     visualDesc:'Une lecture rapide de l’impact économique.',
@@ -993,7 +1026,7 @@ const i18n={
     reportEstimatedPayback:'Payback estimé',
     reportPotentialProfit:'💹 Bénéfice net annuel potentiel',
     reportInvestment:'Investissement estimé',
-    reportAnnualRoi:'📊 ROI annuel estimé',
+    reportAnnualRoi:'ROI annuel estimé',
     reportDailyRevenue:'💶 Chiffre d’affaires journalier potentiel',
     summaryTerrace:'Selon les données fournies, les conditions climatiques affectent environ {days} jours commerciaux par an.',
     summaryNoTerrace:'Selon les données fournies, la terrasse prévue pourrait devenir une nouvelle source de chiffre d’affaires annuel avec un fort retour commercial.',
@@ -1342,9 +1375,49 @@ function updateReport(c,terrace){
   const totalBlocks=36;
   const lostBlocks=terrace && c.annualOpenDays>0?Math.round(totalBlocks*lost/c.annualOpenDays):0;
   const usableBlocks=totalBlocks-lostBlocks;
+  // Premium weather impact visualization
+  const totalDays = c.annualOpenDays || 1;
+  const pctLost = terrace ? Math.min(100, Math.round(lost/totalDays*100)) : 0;
+  const pctUsable = 100 - pctLost;
+  // SVG donut chart
+  const r = 54, cx = 70, cy = 70, circ = 2*Math.PI*r;
+  const dashUsable = (pctUsable/100*circ).toFixed(1);
+  const dashLost = (pctLost/100*circ).toFixed(1);
+  const offsetLost = (-circ/4).toFixed(1); // start at top
+  const offsetUsable = (circ * pctLost/100 - circ/4).toFixed(1);
   $('daysBars').innerHTML=`
-    <div class="bars-row"><span>${tr('usableDays')}</span><div>${Array.from({length:usableBlocks},()=>'<i class="usable"></i>').join('')}</div><strong>${num(usable,0)}</strong></div>
-    <div class="bars-row"><span>${tr('affectedDays')}</span><div>${Array.from({length:lostBlocks},()=>'<i class="lost"></i>').join('')}</div><strong>${terrace?num(lost,0):'0'}</strong></div>`;
+    <div class="weather-viz">
+      <div class="weather-donut-wrap">
+        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" class="weather-donut-svg">
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e8f0f8" stroke-width="18"/>
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#2997ff" stroke-width="18"
+            stroke-dasharray="${dashLost} ${(circ-parseFloat(dashLost)).toFixed(1)}"
+            stroke-dashoffset="${offsetLost}" stroke-linecap="round"/>
+          <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#111" stroke-width="18"
+            stroke-dasharray="${dashUsable} ${(circ-parseFloat(dashUsable)).toFixed(1)}"
+            stroke-dashoffset="${offsetUsable}" stroke-linecap="round"/>
+          <text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="22" font-weight="900" fill="#111" font-family="Inter,sans-serif">${terrace?num(lost,0):'0'}</text>
+          <text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="8" font-weight="700" fill="#666" font-family="Inter,sans-serif" letter-spacing="1">${tr('pdfDaysAffected')||'DAYS LOST'}</text>
+          <text x="${cx}" y="${cy+22}" text-anchor="middle" font-size="7" font-weight="600" fill="#999" font-family="Inter,sans-serif">${tr('daysPerYear')||'per year'}</text>
+        </svg>
+        <div class="weather-donut-legend">
+          <div class="wdl-item"><span class="wdl-dot" style="background:#111"></span><span>${tr('usableDays')||'Usable days'}: <strong>${num(usable,0)}</strong></span></div>
+          <div class="wdl-item"><span class="wdl-dot" style="background:#2997ff"></span><span>${tr('affectedDays')||'Affected days'}: <strong>${terrace?num(lost,0):'0'}</strong></span></div>
+        </div>
+      </div>
+      <div class="weather-impact-cards">
+        <div class="wi-card wi-card--blue">
+          <div class="wi-card-pct">${pctLost}%</div>
+          <div class="wi-card-label">${tr('affectedDays')||'Weather-affected days'}</div>
+          <div class="wi-card-value">${terrace?num(lost,0):'0'} ${tr('pdfDaysAffected')||'days'}</div>
+        </div>
+        <div class="wi-card wi-card--dark">
+          <div class="wi-card-pct">${pctUsable}%</div>
+          <div class="wi-card-label">${tr('usableDays')||'Usable commercial days'}</div>
+          <div class="wi-card-value">${num(usable,0)} ${tr('pdfDaysAffected')||'days'}</div>
+        </div>
+      </div>
+    </div>`;
 
   const recoveryRate=terrace?num(c.recovery*100,0):'100';
   const p4ico=['$','↑','%'];
@@ -1370,7 +1443,7 @@ function updateReport(c,terrace){
     [tr('returnProfit'),money(c.recoverableProfit)],
     [tr('paybackWord'),paybackDisplay],
     [tr('reportAnnualRoi'),isFinite(c.roi)?`${num(c.roi)} %`:'—']
-  ].map(([a,b],i)=>`<div class="return-card"><div class="kpi-ico">${p5ico[i]}</div><span>${a}</span><strong>${b}</strong></div>`).join('');
+  ].map(([a,b],i)=>`<div class="return-card"><div class="ret-ico-box">${p5ico[i]}</div><div class="ret-card-text"><span>${a}</span><strong>${b}</strong></div></div>`).join('');
   $('returnNote').innerHTML=terrace?
     tr('returnNoteTerrace'):
     tr('returnNoteNoTerrace');
@@ -1470,7 +1543,7 @@ const forcedTranslationsV251 = {
     investment: 'Inversión estimada',
     resultsTitle: '📈 Datos de inversión completos',
     resultsDesc: 'Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.',
-    kpis: ['💶 Facturación diaria potencial','📅 Facturación anual potencial','💹 Beneficio neto anual potencial','🌧️ Facturación anual perdida por clima','⛈️ Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','📊 ROI anual estimado','⏳ Años para recuperar inversión'],
+    kpis: ['💶 Facturación diaria potencial','📅 Facturación anual potencial','💹 Beneficio neto anual potencial','🌧️ Facturación anual perdida por clima','⛈️ Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','ROI anual estimado','⏳ Años para recuperar inversión'],
     visualTitle: '📉 Comparativa visual',
     visualDesc: 'Una lectura rápida del impacto económico.',
     impact: 'Impacto anual',
@@ -1536,13 +1609,13 @@ const forcedTranslationsV251 = {
     investmentDesc: 'Enter the estimated investment to calculate recovery, ROI and payback.',
     investment: 'Estimated investment',
     resultsTitle: '📈 Complete investment data',
-    roi:'📊 Estimated annual ROI',
+    roi:'Estimated annual ROI',
     roiTooltipTitle:'What is ROI?',
     roiTooltipText:'ROI (Return on Investment) measures how much annual profit the Airclos investment generates relative to its cost. A 40% ROI means you recover 40% of the investment each year as additional net profit.',
     paybackTooltipTitle:'What is Payback?',
     paybackTooltipText:'Payback is the time needed to recover the initial investment through the net profit generated. For example, a payback of 2.64 years means that in less than 3 seasons the Airclos investment is fully paid back.',
     resultsDesc: 'A reading focused on the problem Airclos solves: recovering business days lost due to weather.',
-    kpis: ['💶 Potential daily revenue','📅 Potential annual revenue','💹 Potential annual net profit','🌧️ Annual revenue lost due to weather','⛈️ Annual net profit lost due to weather','✨ Recoverable net profit with Airclos','📊 Estimated annual ROI','⏳ Years to recover investment'],
+    kpis: ['💶 Potential daily revenue','📅 Potential annual revenue','💹 Potential annual net profit','🌧️ Annual revenue lost due to weather','⛈️ Annual net profit lost due to weather','✨ Recoverable net profit with Airclos','Estimated annual ROI','⏳ Years to recover investment'],
     visualTitle: '📉 Visual comparison',
     visualDesc: 'A quick reading of the economic impact.',
     impact: 'Annual impact',
@@ -1608,13 +1681,13 @@ const forcedTranslationsV251 = {
     investmentDesc: 'Indiquez l’investissement prévu pour calculer la récupération, le ROI et le payback.',
     investment: 'Investissement estimé',
     resultsTitle: '📈 Données d\'investissement complètes',
-    roi:'📊 ROI annuel estimé',
+    roi:'ROI annuel estimé',
     roiTooltipTitle:'Qu\'est-ce que le ROI ?',
     roiTooltipText:'Le ROI (Retour sur Investissement) mesure le bénéfice annuel que génère l\'investissement Airclos par rapport à son coût. Un ROI de 40% signifie que vous récupérez 40% de l\'investissement chaque année sous forme de bénéfice net supplémentaire.',
     paybackTooltipTitle:'Qu\'est-ce que le Payback ?',
     paybackTooltipText:'Le Payback est le temps nécessaire pour récupérer l\'investissement initial grâce au bénéfice net généré. Par exemple, un payback de 2,64 ans signifie qu\'en moins de 3 saisons l\'investissement Airclos est entièrement amorti.',
     resultsDesc: 'Lecture orientée sur le problème résolu par Airclos : récupérer des jours d’activité perdus à cause du climat.',
-    kpis: ['💶 Chiffre d’affaires journalier potentiel','📅 Chiffre d’affaires annuel potentiel','💹 Bénéfice net annuel potentiel','🌧️ Chiffre d’affaires annuel perdu par climat','⛈️ Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','📊 ROI annuel estimé','⏳ Années pour récupérer l’investissement'],
+    kpis: ['💶 Chiffre d’affaires journalier potentiel','📅 Chiffre d’affaires annuel potentiel','💹 Bénéfice net annuel potentiel','🌧️ Chiffre d’affaires annuel perdu par climat','⛈️ Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','ROI annuel estimé','⏳ Années pour récupérer l’investissement'],
     visualTitle: '📉 Comparaison visuelle',
     visualDesc: 'Une lecture rapide de l’impact économique.',
     impact: 'Impact annuel',
@@ -1895,13 +1968,13 @@ document.addEventListener('DOMContentLoaded',()=>{
       investmentDesc:'Introduce la inversión prevista para calcular recuperación, ROI y payback.',
       investment:'Inversión estimada',
       resultsTitle:'📈 Datos de inversión completos',
-    roi:'📊 ROI anual estimado',
+    roi:'ROI anual estimado',
     roiTooltipTitle:'¿Qué es el ROI?',
     roiTooltipText:'El ROI (Retorno sobre la Inversión) mide cuánto beneficio anual genera la inversión en Airclos respecto a su coste. Un ROI del 40% significa que cada año recuperas el 40% de lo invertido en forma de beneficio neto adicional.',
     paybackTooltipTitle:'¿Qué es el Payback?',
     paybackTooltipText:'El Payback es el tiempo necesario para recuperar la inversión inicial gracias al beneficio neto generado. Por ejemplo, un payback de 2,64 años significa que en menos de 3 temporadas la inversión en Airclos queda completamente amortizada.',
       resultsDesc:'Lectura orientada al problema que Airclos resuelve: recuperar días de negocio perdidos por climatología.',
-      kpis:['💶 Facturación diaria potencial','📅 Facturación anual potencial','💹 Beneficio neto anual potencial','🌧️ Facturación anual perdida por clima','⛈️ Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','📊 ROI anual estimado','⏳ Años para recuperar inversión'],
+      kpis:['💶 Facturación diaria potencial','📅 Facturación anual potencial','💹 Beneficio neto anual potencial','🌧️ Facturación anual perdida por clima','⛈️ Beneficio neto anual perdido por clima','Beneficio neto recuperable con Airclos','ROI anual estimado','⏳ Años para recuperar inversión'],
       visualTitle:'📉 Comparativa visual',
       visualDesc:'Una lectura rápida del impacto económico.',
       annualImpact:'Impacto anual',
@@ -1969,13 +2042,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     investmentDesc:'Enter the estimated investment to calculate recovery, ROI and payback.',
       investment:'Estimated investment',
       resultsTitle:'📈 Complete investment data',
-    roi:'📊 Estimated annual ROI',
+    roi:'Estimated annual ROI',
     roiTooltipTitle:'What is ROI?',
     roiTooltipText:'ROI (Return on Investment) measures how much annual profit the Airclos investment generates relative to its cost. A 40% ROI means you recover 40% of the investment each year as additional net profit.',
     paybackTooltipTitle:'What is Payback?',
     paybackTooltipText:'Payback is the time needed to recover the initial investment through the net profit generated. For example, a payback of 2.64 years means that in less than 3 seasons the Airclos investment is fully paid back.',
       resultsDesc:'A reading focused on the problem Airclos solves: recovering business days lost due to weather.',
-      kpis:['💶 Potential daily revenue','📅 Potential annual revenue','💹 Potential annual net profit','🌧️ Annual revenue lost due to weather','⛈️ Annual net profit lost due to weather','✨ Recoverable net profit with Airclos','📊 Estimated annual ROI','⏳ Years to recover investment'],
+      kpis:['💶 Potential daily revenue','📅 Potential annual revenue','💹 Potential annual net profit','🌧️ Annual revenue lost due to weather','⛈️ Annual net profit lost due to weather','✨ Recoverable net profit with Airclos','Estimated annual ROI','⏳ Years to recover investment'],
       visualTitle:'📉 Visual comparison',
       visualDesc:'A quick reading of the economic impact.',
       annualImpact:'Annual impact',
@@ -2043,13 +2116,13 @@ document.addEventListener('DOMContentLoaded',()=>{
       investmentDesc:'Indiquez l’investissement prévu pour calculer la récupération, le ROI et le payback.',
       investment:'Investissement estimé',
       resultsTitle:'📈 Données d\'investissement complètes',
-    roi:'📊 ROI annuel estimé',
+    roi:'ROI annuel estimé',
     roiTooltipTitle:'Qu\'est-ce que le ROI ?',
     roiTooltipText:'Le ROI (Retour sur Investissement) mesure le bénéfice annuel que génère l\'investissement Airclos par rapport à son coût. Un ROI de 40% signifie que vous récupérez 40% de l\'investissement chaque année sous forme de bénéfice net supplémentaire.',
     paybackTooltipTitle:'Qu\'est-ce que le Payback ?',
     paybackTooltipText:'Le Payback est le temps nécessaire pour récupérer l\'investissement initial grâce au bénéfice net généré. Par exemple, un payback de 2,64 ans signifie qu\'en moins de 3 saisons l\'investissement Airclos est entièrement amorti.',
       resultsDesc:'Lecture orientée sur le problème résolu par Airclos : récupérer des jours d’activité perdus à cause du climat.',
-      kpis:['💶 Chiffre d’affaires journalier potentiel','📅 Chiffre d’affaires annuel potentiel','💹 Bénéfice net annuel potentiel','🌧️ Chiffre d’affaires annuel perdu par climat','⛈️ Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','📊 ROI annuel estimé','⏳ Années pour récupérer l’investissement'],
+      kpis:['💶 Chiffre d’affaires journalier potentiel','📅 Chiffre d’affaires annuel potentiel','💹 Bénéfice net annuel potentiel','🌧️ Chiffre d’affaires annuel perdu par climat','⛈️ Bénéfice net annuel perdu par climat','Bénéfice net récupérable avec Airclos','ROI annuel estimé','⏳ Années pour récupérer l’investissement'],
       visualTitle:'📉 Comparaison visuelle',
       visualDesc:'Une lecture rapide de l’impact économique.',
       annualImpact:'Impact annuel',
